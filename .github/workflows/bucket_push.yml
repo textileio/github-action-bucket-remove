@@ -11,5 +11,15 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Bucket push action
+      id: push
+      uses: textileio/github-action-bucket-push@master
+      with:
+        bucket-name: 'bucket-remove-action-${{ github.event.pull_request.head.sha }}'
+        path: '*'
+        token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
+    # Use the output from the `hello` step
+    - name: Get the output CID
+      run: echo "The CID was ${{ steps.push.outputs.cid }}"
     - name: Get the Bucket URL
-      run: echo "bucket-remove-action-${{ github.event.pull_request.head.sha }}"
+      run: echo "The Bucket URL is ${{ steps.push.outputs.url }}"
