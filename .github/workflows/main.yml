@@ -1,0 +1,32 @@
+name: bucket_push
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  bucket_push:
+    runs-on: ubuntu-latest
+    name: Remove a Textile Bucket
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Bucket push action
+      id: push
+      uses: textileio/github-action-bucket-push@master
+      with:
+        bucket-name: 'bucket-remove-action'
+        path: '*'
+        token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
+    - name: Bucket remove action
+      id: push
+      uses: textileio/github-action-bucket-remove@master
+      with:
+        bucket-name: 'bucket-remove-action'
+        token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
+    # Use the output from the `hello` step
+    - name: Get the output CID
+      run: echo "The CID was ${{ steps.push.outputs.cid }}"
