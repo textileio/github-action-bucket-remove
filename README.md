@@ -71,3 +71,11 @@ jobs:
 ```
 
 Again, replace `YOUR_BUCKET_NAME` with your production bucket name.
+
+## Example
+
+If you BUCKET_NAME is 'my-fake-bucket', when you open a PR, you'll be issued a temporary bucket on Textile where you can quickly view your app or website running live. The Bucket name will be appended with a temporary ID, so your URL may look like, `https://my-fake-bucket-23948021.textile.cafe`. 
+
+After you merge or delete your PR, the above URL will no longer render your site. 
+
+You can use the [Bucket Push](github.com/textileio/github-action-bucket-push/) action to trigger your main bucket (without ephemeral ID) to update on merges. 
