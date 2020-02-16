@@ -14,5 +14,5 @@ jobs:
       id: push
       uses: textileio/github-action-bucket-remove@master
       with:
-        bucket-name: 'bucket-remove-action-${{ github.event.pull_request.head.sha }}'
+        bucket-name: 'bucket-remove-action-${{ github.event.pull_request.id }}'
         token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
