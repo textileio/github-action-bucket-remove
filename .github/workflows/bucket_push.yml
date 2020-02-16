@@ -7,7 +7,7 @@ on:
 jobs:
   bucket_push:
     runs-on: ubuntu-latest
-    name: Remove a Textile Bucket
+    name: Create a Textile Bucket
     steps:
     - name: Checkout
       uses: actions/checkout@v1
