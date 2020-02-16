@@ -1,8 +1,5 @@
 name: bucket_push
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -18,15 +15,11 @@ jobs:
       id: push
       uses: textileio/github-action-bucket-push@master
       with:
-        bucket-name: 'bucket-remove-action'
+        bucket-name: 'bucket-remove-action-${{ github.event.pull_request.id }}'
         path: '*'
-        token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
-    - name: Bucket remove action
-      id: push
-      uses: textileio/github-action-bucket-remove@master
-      with:
-        bucket-name: 'bucket-remove-action'
         token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
     # Use the output from the `hello` step
     - name: Get the output CID
       run: echo "The CID was ${{ steps.push.outputs.cid }}"
+    - name: Get the Bucket URL
+      run: echo "The Bucket URL is ${{ steps.push.outputs.url }}"
