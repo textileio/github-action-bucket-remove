@@ -16,7 +16,7 @@ jobs:
       uses: textileio/github-action-bucket-push@master
       with:
         bucket-name: 'bucket-remove-action-${{ github.event.pull_request.id }}'
-        path: '*'
+        path: 'www/*'
         token: ${{ secrets.TEXTILE_AUTH_TOKEN }}
     # Use the output from the `hello` step
     - name: Get the output CID
